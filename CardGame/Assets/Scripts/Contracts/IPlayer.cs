@@ -6,7 +6,7 @@ namespace Assets.Scripts.Contracts
     {
         #region Props
         ICastle Castle { get; set; }
-        List<ICard> Cards { get; set; }
+        List<ICard> Hand { get; set; }
         int Resources { get; set; }
         #endregion
 
@@ -15,3 +15,5 @@ namespace Assets.Scripts.Contracts
         #endregion
     }
 }
+
+
