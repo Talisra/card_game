@@ -6,11 +6,11 @@ using UnityEngine.UI;
 public class TimeUi : MonoBehaviour
 {
     #region Fields
-    public string clockFormat = "{0:D2}:{1:D2}";
+    public string clockFormat = "{0:2D}:{1:2D}";
     public Image uiTimerBarShaped;
     public Text uiTimerClockShaped;
 
-    private int _maxTurnTime;
+    private float _maxTurnTime;
     private Dictionary<CounterType, Action<float>> counterTypeToUpdateFunction = new Dictionary<CounterType, Action<float>>();
         
     #endregion
@@ -23,7 +23,7 @@ public class TimeUi : MonoBehaviour
 
     #region Public Functions
 
-    public void ConfigureTimerVisuals(CounterType counterType, int turnTime)
+    public void ConfigureTimerVisuals(CounterType counterType, float turnTime)
     {
         _maxTurnTime = turnTime;
         if (counterType == CounterType.Bar)
@@ -53,7 +53,10 @@ public class TimeUi : MonoBehaviour
     private void UpdateTimeLeftOfTextField(float remainingTime)
     {
         var remainingTimeAsParts = remainingTime.ToString("0.00").Split('.');
-        uiTimerClockShaped.text = string.Format(clockFormat, remainingTimeAsParts[0], remainingTimeAsParts[2]);
+        Debug.Log("remainingTime= " + remainingTime);
+        Debug.Log("remainingTime.ToString(0.00)= " + remainingTime.ToString("0.00"));
+        Debug.Log("remainingTimeAsParts= " + string.Join(",",remainingTimeAsParts));
+        uiTimerClockShaped.text = string.Format(clockFormat, remainingTimeAsParts[0], remainingTimeAsParts[1]);
     }
     #endregion
 
