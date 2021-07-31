@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.Contracts;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum CounterType { Bar, Clock }
 public class TurnMgr : MonoBehaviour
@@ -8,20 +9,26 @@ public class TurnMgr : MonoBehaviour
     #region Fields
     public float turnTime;
     public Queue<IPlayer> players;
-    public CounterType counterType;
-    public TimeUi timeUi;
 
     private float timeLeft;
     private int turnCounter;
     private int roundCounter;
     #endregion
 
+    #region GuiRelated
+    const string RoundCounterPrefix = "Round ";
+    const string TurnCounterPrefix = "Turn ";
+    public TimeUi timeUi;
+    public Text roundCounterTxt;
+    public Text turnCounterTxt;
+    public CounterType counterType;
+    #endregion
+
     #region Public Core Functions
     public void SwitchTurns()
     {
         //players.Enqueue(players.Dequeue()); relvent when players will be created
-        turnCounter++;
-        roundCounter = (turnCounter % /*players.Count*/4) + 1;
+        
     }
 
     public void EndTurn()
@@ -54,6 +61,13 @@ public class TurnMgr : MonoBehaviour
     private void InitTimerValues()
     {
         timeLeft = turnTime;
+        if (turnCounter % /*players.Count*/4 == 0)
+        {
+            roundCounter++;
+        }
+        turnCounter++;
+        roundCounterTxt.text = RoundCounterPrefix + roundCounter;
+        turnCounterTxt.text = TurnCounterPrefix + turnCounter;
     }
     #endregion
 

@@ -53,9 +53,6 @@ public class TimeUi : MonoBehaviour
     private void UpdateTimeLeftOfTextField(float remainingTime)
     {
         var remainingTimeAsParts = remainingTime.ToString("0.00").Split('.');
-        Debug.Log("remainingTime= " + remainingTime);
-        Debug.Log("remainingTime.ToString(0.00)= " + remainingTime.ToString("0.00"));
-        Debug.Log("remainingTimeAsParts= " + string.Join(",",remainingTimeAsParts));
         uiTimerClockShaped.text = string.Format(clockFormat, remainingTimeAsParts[0], remainingTimeAsParts[1]);
     }
     #endregion

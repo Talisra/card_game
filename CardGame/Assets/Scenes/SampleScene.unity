@@ -152,9 +152,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23979c3a18f71694f99908c4252041a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnTime: 5
-  counterType: 1
+  turnTime: 2
   timeUi: {fileID: 473130967}
+  roundCounterTxt: {fileID: 1294787261}
+  turnCounterTxt: {fileID: 1238685363}
+  counterType: 1
 --- !u!4 &192873622
 Transform:
   m_ObjectHideFlags: 0
