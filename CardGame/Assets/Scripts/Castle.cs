@@ -11,7 +11,7 @@ public class Castle : MonoBehaviour, Assets.Scripts.Contracts.ICastle
     public float MaxHP { get; set; } 
     public float CurrentHP { get; set; } 
     public ICard[] PassiveTriggerSpots { get; set; }
-    public IPlayer Player { get; set; }
+    public IPlayer ControllingPlayer { get; set; }
 
     public void ScaleWithHP()
     {
@@ -29,23 +29,25 @@ public class Castle : MonoBehaviour, Assets.Scripts.Contracts.ICastle
 
     public void BuildCastle(int amount)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Function 'BuildCastle(int amount)' Not Implemented!");
     }
 
     public void DestroyCastle(int amount)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Function 'DestroyCastle(int amount)' Not Implemented!");
     }
 
     private void Start()
     {
-        // Dev Code!
+        DeveloperFunction();
+    }
+
+    private void DeveloperFunction()
+    {
         CastleBodyMaxHeight = CastleBody.transform.localScale.y;
         MaxHP = 100;
         CurrentHP = Random.Range(0, 100);
-        Debug.Log(CurrentHP/MaxHP);
+        Debug.Log(CurrentHP / MaxHP);
         ScaleWithHP();
-        // End of Dev Code
     }
-
 }
