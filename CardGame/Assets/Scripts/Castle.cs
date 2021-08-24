@@ -29,7 +29,12 @@ public class Castle : MonoBehaviour, Assets.Scripts.Contracts.ICastle
 
     public void BuildCastle(int amount)
     {
-        Debug.Log("Function 'BuildCastle(int amount)' Not Implemented!");
+        CurrentHP += amount;
+        if (CurrentHP > MaxHP) // == Castle Win?
+        {
+            CurrentHP = MaxHP;
+        }
+        ScaleWithHP();
     }
 
     public void DestroyCastle(int amount)
@@ -37,8 +42,16 @@ public class Castle : MonoBehaviour, Assets.Scripts.Contracts.ICastle
         Debug.Log("Function 'DestroyCastle(int amount)' Not Implemented!");
     }
 
+    private void Initiate()
+    {
+        CurrentHP = MaxHP;
+        ScaleWithHP();
+    }
+
     private void Start()
     {
+        Initiate();
+
         DeveloperFunction();
     }
 
