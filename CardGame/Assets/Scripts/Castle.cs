@@ -1,17 +1,16 @@
-﻿using Assets.Scripts.Contracts;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Castle : MonoBehaviour, Assets.Scripts.Contracts.ICastle
+public class Castle : MonoBehaviour
 {
     public GameObject CastleBody;
     public GameObject CastleBase;
     private float CastleBodyMaxHeight;
-    public float MaxHP { get; set; } 
-    public float CurrentHP { get; set; } 
-    public ICard[] PassiveTriggerSpots { get; set; }
-    public IPlayer ControllingPlayer { get; set; }
+    public float MaxHP;
+    private float CurrentHP;
+    //public ICard[] PassiveTriggerSpots { get; set; }
+    //public IPlayer ControllingPlayer { get; set; }
 
     public void ScaleWithHP()
     {
@@ -29,7 +28,12 @@ public class Castle : MonoBehaviour, Assets.Scripts.Contracts.ICastle
 
     public void BuildCastle(int amount)
     {
-        Debug.Log("Function 'BuildCastle(int amount)' Not Implemented!");
+        CurrentHP += amount;
+        if (CurrentHP > MaxHP) // == Castle Win?
+        {
+            CurrentHP = MaxHP;
+        }
+        ScaleWithHP();
     }
 
     public void DestroyCastle(int amount)
@@ -37,9 +41,18 @@ public class Castle : MonoBehaviour, Assets.Scripts.Contracts.ICastle
         Debug.Log("Function 'DestroyCastle(int amount)' Not Implemented!");
     }
 
+    private void Initiate()
+    {
+        CastleBodyMaxHeight = CastleBody.transform.localScale.y;
+        CurrentHP = MaxHP;
+        ScaleWithHP();
+    }
+
     private void Start()
     {
-        DeveloperFunction();
+        Initiate();
+
+        //DeveloperFunction();
     }
 
     private void DeveloperFunction()

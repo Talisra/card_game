@@ -365,3 +365,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CastleBody: {fileID: 5478772761724150076}
   CastleBase: {fileID: 2963357672414016225}
+  MaxHP: 100
