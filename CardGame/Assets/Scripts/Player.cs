@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Public Functions
-    public void UseCardFromHand()
+    public void UseCard()
     {
         Debug.Log("UseCardFromHand is not implemented yet!");
     }

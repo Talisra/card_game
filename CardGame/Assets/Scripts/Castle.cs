@@ -9,8 +9,8 @@ public class Castle : MonoBehaviour
     private float CastleBodyMaxHeight;
     public float MaxHP;
     private float CurrentHP;
-    //public ICard[] PassiveTriggerSpots { get; set; }
-    //public IPlayer ControllingPlayer { get; set; }
+    public BaseCard[] PassiveTriggerSpots { get; set; }
+    public Player ControllingPlayer { get; set; }
 
     public void ScaleWithHP()
     {

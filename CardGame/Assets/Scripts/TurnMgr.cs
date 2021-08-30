@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.Contracts;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +7,7 @@ public class TurnMgr : MonoBehaviour
 {
     #region Fields
     public float turnTime;
-    public Queue<IPlayer> players;
+    public Queue<Player> players;
 
     private float timeLeft;
     private int turnCounter;
