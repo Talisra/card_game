@@ -7,8 +7,6 @@ public struct CostStruct
     int gold;
     int hp;
 }
-
-public enum CardState { Graveyard = 'G', FacedDown = 'F', InHand = 'H', InDeck = 'D' };
 public enum TargetType { Self = 'S', Select = 'C', Others = 'O', All = 'A'};
 
 public abstract class BaseCard : MonoBehaviour
@@ -16,18 +14,13 @@ public abstract class BaseCard : MonoBehaviour
     #region Properties
     public CardType cardType;
     public CostStruct cost;
-    public bool isFacedUp;
-    public CardState cardState;
     public string description;
     public Image cardImage;
-    public TargetType target;
+    public TargetType targetType;
     #endregion
 
     #region Public Functions
-    // Note 1- should the base card receive this or should it be there by default?
-    // Note 2- should target type be a property of all card or just active and trigger?
-    // Note 3- cardState and isFaceUp are somehow the same
-    public abstract BaseCard ActivateSelf(Player player, TargetType targetType);
+    public abstract BaseCard ActivateSelf(Player activatingPlayer);
 
     public BaseCard Discard()
     {

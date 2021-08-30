@@ -7,9 +7,9 @@
 
     #region Public Functions
 
-    public override BaseCard ActivateSelf(Player player, TargetType targetType)
+    public override BaseCard ActivateSelf(Player activatingPlayer)
     {
-        return cardEffect.ActivateSelf(player,targetType);
+        return cardEffect.ActivateEffect(activatingPlayer, targetType);
     }
 
     #endregion

@@ -10,7 +10,7 @@ public abstract class CardEffect : MonoBehaviour
 
     #region Public Functions
 
-    public abstract BaseCard ActivateSelf(Player player, TargetType targetType);
+    public abstract BaseCard ActivateEffect(Player activatingPlayer, TargetType targetType);
 
     #endregion
 
