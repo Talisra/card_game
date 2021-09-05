@@ -2,15 +2,9 @@
 
 public abstract class CardEffect : MonoBehaviour
 {
-    #region Properties
-    public TargetType targetType;
-    public string description;
-    public int cardValue;
-    #endregion
-
     #region Public Functions
 
-    public abstract BaseCard ActivateEffect(Player activatingPlayer, TargetType targetType);
+    public abstract void ActivateEffect(Player activatingPlayer, TargetType targetType, int value);
 
     #endregion
 
