@@ -13,7 +13,7 @@ public abstract class BaseCard : MonoBehaviour
 {
     #region Properties
     public string cardName;
-    public Sprite cardImage;
+    public Sprite cardSprite;
     public string cardDescription;
     public CardType cardType;
     public CostStruct cost;
@@ -51,7 +51,7 @@ public abstract class BaseCard : MonoBehaviour
     #region Unity Functions
     public void Start()
     {
-        cardImageUI.sprite = cardImage;
+        cardImageUI.sprite = cardSprite;
         cardDescriptionUI.text = cardDescription;
         cardNameUI.text = cardName;
     }
