@@ -7,19 +7,14 @@
 
     #region Public Functions
 
-    public override BaseCard ActivateSelf(Player activatingPlayer)
+    public override void ActivateSelf(Player activatingPlayer)
     {
-        return cardEffect.ActivateEffect(activatingPlayer, targetType);
+        cardEffect.ActivateEffect(activatingPlayer, targetType, effectValue);
     }
 
     #endregion
 
     #region Unity Functions
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
 
     // Update is called once per frame
     void Update()
