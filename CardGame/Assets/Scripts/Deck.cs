@@ -6,6 +6,8 @@ public class Deck : MonoBehaviour
 {
     #region Properties
     public List<BaseCard> currentGameCards;
+
+    public float baseScale = 0.05f;
     #endregion
 
 
@@ -23,6 +25,19 @@ public class Deck : MonoBehaviour
             return;
         }
         currentGameCards.Add(cardToAdd);
+
+        float newDeckSize = baseScale * (currentGameCards.Count);
+        Debug.LogWarning($"newDeckSize = {newDeckSize}");
+        gameObject.transform.localScale = new Vector3( // Adjust Height Scale
+            gameObject.transform.localScale.x,
+            newDeckSize,
+            gameObject.transform.localScale.z);
+
+        gameObject.transform.position = new Vector3( // Adjust y position, based on the Base of the castle
+            gameObject.transform.position.x,
+            gameObject.transform.position.y + (baseScale),
+            gameObject.transform.position.z
+            );
     }
     #endregion
 
