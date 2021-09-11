@@ -15,7 +15,7 @@ public abstract class BaseCard : MonoBehaviour
     public string cardName;
     public Sprite cardSprite;
     public string cardDescription;
-    public CardType cardType;
+    //public CardType cardType;
     public CostStruct cost;
     public TargetType targetType;
     public int effectValue;
@@ -28,6 +28,11 @@ public abstract class BaseCard : MonoBehaviour
 
     #region Public Functions
     public abstract void ActivateSelf(Player activatingPlayer);
+
+    public void GenerateDescription()
+    {
+        cardDescriptionUI.text = string.Format(cardDescription, effectValue);
+    }
 
     public BaseCard Discard()
     {
@@ -51,8 +56,8 @@ public abstract class BaseCard : MonoBehaviour
     #region Unity Functions
     public void Start()
     {
+        GenerateDescription();
         cardImageUI.sprite = cardSprite;
-        cardDescriptionUI.text = cardDescription;
         cardNameUI.text = cardName;
     }
 
