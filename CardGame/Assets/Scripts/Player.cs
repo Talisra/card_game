@@ -11,12 +11,9 @@ public class Player : MonoBehaviour
     public Transform cameraPoint; // The actual camera transform of the player in the arena
     public GameObject handAnchor; // The position anchor of the hand
     public Castle myCastle;
-    //public List<BaseCard> playerHand;
     private ObservableCollection<BaseCard> playerHand = new ObservableCollection<BaseCard>();
 
     public int availableResources;
-
-    public BaseCard temp;
 
     private float spaceBetweenCardsInHand = 0;
     private float cardWidth = 2.5f;
@@ -31,29 +28,35 @@ public class Player : MonoBehaviour
     public void AddCardToHand(BaseCard cardToAdd)
     {
         playerHand.Add(cardToAdd);
-        cardToAdd.transform.SetParent(handAnchor.transform);
-        cardToAdd.transform.localPosition = Vector3.zero;
-        cardToAdd.transform.localRotation = Quaternion.identity;
-        ArrangeCardsGraphic();
+        ResetCardParent(cardToAdd);
     }
     #endregion
 
     // This function works everytime the hand collection is changed
     private void OnHandChange(object sender, NotifyCollectionChangedEventArgs e)
     {
-        ArrangeCardsGraphic();
+        RenderCardsGraphic();
     }
 
-    private void ArrangeCardsGraphic()
+    // each card that is added to the player's hand must be reseted by
+    // reset its local position and rotation and adding it to the handAnchor
+    private void ResetCardParent(BaseCard card)
     {
-        float CardX = (playerHand.Count % 2 == 0) ? // Getting the x of the first card in hand depends on odd/even
+        card.transform.SetParent(handAnchor.transform);
+        card.transform.localPosition = Vector3.zero;
+        card.transform.localRotation = Quaternion.identity;
+    }
+
+    private void RenderCardsGraphic()
+    {
+        float cardX = (playerHand.Count % 2 == 0) ? // Getting the x of the first card in hand depends on odd/even
             0 - cardWidth/2 - spaceBetweenCardsInHand/2 -
             (cardWidth + spaceBetweenCardsInHand) * ((playerHand.Count-1)/2) :
             0 - (cardWidth + spaceBetweenCardsInHand) * (playerHand.Count/2);
         foreach(BaseCard card in playerHand) // arrange the cards 
         {
-            card.transform.localPosition = new Vector3(CardX, handAnchor.transform.position.y, handAnchor.transform.position.z);
-            CardX += cardWidth + spaceBetweenCardsInHand;
+            card.transform.localPosition = new Vector3(cardX, handAnchor.transform.position.y, handAnchor.transform.position.z);
+            cardX += cardWidth + spaceBetweenCardsInHand;
         }
     }
 
@@ -69,15 +72,11 @@ public class Player : MonoBehaviour
     private void Start()
     {
         playerHand.CollectionChanged += OnHandChange;
-        // each card that is added to the player's hand must be reseted by
-        // reset its local position and rotation and adding it to the handAnchor
-        foreach (BaseCard card in playerHand)
-        {
-            card.transform.SetParent(handAnchor.transform);
-            card.transform.localPosition = Vector3.zero;
-            card.transform.localRotation = Quaternion.identity;
-        }
-        ArrangeCardsGraphic();
+    }
+
+    private void OnDestroy()
+    {
+        playerHand.CollectionChanged -= OnHandChange;
     }
 
     // Update is called once per frame
