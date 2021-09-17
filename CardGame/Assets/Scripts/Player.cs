@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
     #region Properties
 
     public Castle myCastle;
-    public List<BaseCard> playerHand;
+    public List<BaseCard> playerHand = new List<BaseCard>();
     public int availableResources;
 
     #endregion

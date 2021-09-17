@@ -8,6 +8,7 @@ public class TurnMgr : MonoBehaviour
     #region Fields
     public float turnTime;
     public Queue<Player> players;
+    public Deck mainDeck;
 
     private float timeLeft;
     private int turnCounter;
@@ -27,7 +28,8 @@ public class TurnMgr : MonoBehaviour
     public void SwitchTurns()
     {
         //players.Enqueue(players.Dequeue()); relvent when players will be created
-        
+        //var currentPlayer = players.Peek();
+        mainDeck.Draw(null);
     }
 
     public void EndTurn()

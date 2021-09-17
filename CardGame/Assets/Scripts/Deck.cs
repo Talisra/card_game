@@ -8,26 +8,46 @@ public class Deck : MonoBehaviour
     public List<BaseCard> currentGameCards;
 
     public float baseScale = 0.05f;
+    public float baseYHeigt;
     #endregion
 
 
     #region Public Functions
-    public void Draw()
+    public void Draw(Player currentPlayer)
     {
-        Debug.Log("Draw is not yet implemented");
+        Debug.Log($"currentGameCards before = {currentGameCards.Count}");
+        //currentPlayer.AddCardToHand(currentGameCards[currentGameCards.Count - 1]);
+        currentGameCards.RemoveAt(currentGameCards.Count - 1);
+        Debug.Log($"currentGameCards after = {currentGameCards.Count}");
+        RenderDeckSize();
     }
 
     public void AddCardToDeck(BaseCard cardToAdd)
     {
-        if(cardToAdd == null)
+        if (cardToAdd == null)
         {
             Debug.Log("Card cannot be null");
             return;
         }
         currentGameCards.Add(cardToAdd);
+        RenderDeckSize();
+    }
 
+    public void AddCardsToDeck(List<BaseCard> cardsToAdd)
+    {
+        if (cardsToAdd == null)
+        {
+            Debug.Log("Cards cannot be null");
+            return;
+        }
+        currentGameCards.AddRange(cardsToAdd);
+        RenderDeckSize();
+    }
+
+    public void RenderDeckSize()
+    {
         float newDeckSize = baseScale * (currentGameCards.Count);
-        Debug.LogWarning($"newDeckSize = {newDeckSize}");
+        //Debug.LogWarning($"newDeckSize = {newDeckSize}");
         gameObject.transform.localScale = new Vector3( // Adjust Height Scale
             gameObject.transform.localScale.x,
             newDeckSize,
@@ -35,16 +55,20 @@ public class Deck : MonoBehaviour
 
         gameObject.transform.position = new Vector3( // Adjust y position, based on the Base of the castle
             gameObject.transform.position.x,
-            gameObject.transform.position.y + (baseScale),
+            baseYHeigt + (newDeckSize / 2),
             gameObject.transform.position.z
             );
     }
     #endregion
 
     #region UnityFunctions
-    void Start()
+    void Awake()
     {
         currentGameCards = new List<BaseCard>();
+        gameObject.transform.position = new Vector3(
+            gameObject.transform.position.x,
+            baseYHeigt,
+            gameObject.transform.position.z);
     }
 
     void Update()

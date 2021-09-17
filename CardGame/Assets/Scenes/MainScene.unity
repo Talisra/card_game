@@ -164,7 +164,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 17484770}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.6757839, y: 1.0420818, z: 1.1195595}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -922,6 +922,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnTime: 2
+  mainDeck: {fileID: 8584857106648327010}
   timeUi: {fileID: 644115909}
   roundCounterTxt: {fileID: 189335958}
   turnCounterTxt: {fileID: 2145413144}
@@ -934,7 +935,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1164402509}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 80, y: 753, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1307,6 +1308,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7649047565507826485, guid: a33498e709affa742a4d59fa335e3c18, type: 3}
+      propertyPath: baseYHeigt
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 8232707149265584526, guid: a33498e709affa742a4d59fa335e3c18, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -1321,7 +1326,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8232707149265584526, guid: a33498e709affa742a4d59fa335e3c18, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.73
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 8232707149265584526, guid: a33498e709affa742a4d59fa335e3c18, type: 3}
       propertyPath: m_LocalPosition.z

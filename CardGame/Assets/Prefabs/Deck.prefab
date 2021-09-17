@@ -284,3 +284,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentGameCards: []
+  baseScale: 0.05
+  baseYHeigt: 0.01

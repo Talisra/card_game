@@ -16,16 +16,18 @@ public class CardMgr : MonoBehaviour
     #region Public Functions
     public void CreateDeck()
     {
+        var allGeneratedCards = new List<BaseCard>();
         for (int i = 0; i < deckSize; i++)
         {
             var allGameCardIndex = Random.Range(0, allGameCards.Count);
-            Debug.Log($"allGameCardIndex = {allGameCardIndex}");
-            Debug.Log($"allGameCards.count = {allGameCards.Count}");
             var cardToAdd = allGameCards[allGameCardIndex];
-            Debug.Log($"allGameCards.count = {allGameCards.Count}");
-            Debug.Log($"cardToAdd = {cardToAdd}");
-            mainDeck.AddCardToDeck(cardToAdd);
+
+            var cardGameObject = Instantiate(cardToAdd);
+            cardGameObject.gameObject.SetActive(false);
+
+            allGeneratedCards.Add(cardGameObject);
         }
+        mainDeck.AddCardsToDeck(allGeneratedCards);
     }
 
     public void LoadCards()
@@ -36,10 +38,15 @@ public class CardMgr : MonoBehaviour
     #endregion
 
     #region UnityFunctions
-    void Start()
+
+    private void Awake()
     {
         Init();
         LoadCards();
+    }
+
+    void Start()
+    {
         CreateDeck();
     }
 
