@@ -7,7 +7,8 @@ public class TurnMgr : MonoBehaviour
 {
     #region Fields
     public float turnTime;
-    public Queue<Player> players;
+    public List<Player> allPlayers;
+    public Queue<Player> turnQueue;
     public Deck mainDeck;
 
     private float timeLeft;
@@ -27,9 +28,9 @@ public class TurnMgr : MonoBehaviour
     #region Public Core Functions
     public void SwitchTurns()
     {
-        //players.Enqueue(players.Dequeue()); relvent when players will be created
-        //var currentPlayer = players.Peek();
-        mainDeck.Draw(null);
+        turnQueue.Enqueue(turnQueue.Dequeue()); // relvent when players will be created
+        var currentPlayer = turnQueue.Peek();
+        mainDeck.Draw(currentPlayer);
     }
 
     public void EndTurn()
@@ -40,6 +41,15 @@ public class TurnMgr : MonoBehaviour
     #endregion
 
     #region Unity Functions
+
+    private void Awake()
+    {
+        turnQueue = new Queue<Player>();
+        foreach(Player player in allPlayers)
+        {
+            turnQueue.Enqueue(player);
+        }
+    }
     void Start()
     {
         InitTimerValues();

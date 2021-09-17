@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using UnityEngine;
 
+[System.Serializable]
 public class Player : MonoBehaviour
 {
     #region Properties
@@ -35,6 +36,7 @@ public class Player : MonoBehaviour
     // This function works everytime the hand collection is changed
     private void OnHandChange(object sender, NotifyCollectionChangedEventArgs e)
     {
+        Debug.Log(playerHand.Count);
         RenderCardsGraphic();
     }
 

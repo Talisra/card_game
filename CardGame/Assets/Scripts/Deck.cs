@@ -16,7 +16,9 @@ public class Deck : MonoBehaviour
     public void Draw(Player currentPlayer)
     {
         Debug.Log($"currentGameCards before = {currentGameCards.Count}");
-        //currentPlayer.AddCardToHand(currentGameCards[currentGameCards.Count - 1]);
+        BaseCard drawnCard = currentGameCards[currentGameCards.Count - 1];
+        drawnCard.gameObject.SetActive(true);
+        currentPlayer.AddCardToHand(drawnCard);
         currentGameCards.RemoveAt(currentGameCards.Count - 1);
         Debug.Log($"currentGameCards after = {currentGameCards.Count}");
         RenderDeckSize();
