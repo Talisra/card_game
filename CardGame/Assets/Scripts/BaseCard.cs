@@ -12,15 +12,27 @@ public enum TargetType { Self = 'S', Select = 'C', Others = 'O', All = 'A'};
 public abstract class BaseCard : MonoBehaviour
 {
     #region Properties
-    public CardType cardType;
+    public string cardName;
+    public Sprite cardSprite;
+    public string cardDescription;
+    //public CardType cardType;
     public CostStruct cost;
-    public string description;
-    public Image cardImage;
     public TargetType targetType;
+    public int effectValue;
+
+    // Card visuals
+    public Image cardImageUI;
+    public Text cardNameUI;
+    public Text cardDescriptionUI;
     #endregion
 
     #region Public Functions
-    public abstract BaseCard ActivateSelf(Player activatingPlayer);
+    public abstract void ActivateSelf(Player activatingPlayer);
+
+    public void GenerateDescription()
+    {
+        cardDescriptionUI.text = string.Format(cardDescription, effectValue);
+    }
 
     public BaseCard Discard()
     {
@@ -44,12 +56,14 @@ public abstract class BaseCard : MonoBehaviour
     #region Unity Functions
     public void Start()
     {
-        
+        GenerateDescription();
+        cardImageUI.sprite = cardSprite;
+        cardNameUI.text = cardName;
     }
 
     private void Update()
     {
-        
+
     }
     #endregion
 
