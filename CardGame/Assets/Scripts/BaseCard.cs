@@ -28,7 +28,6 @@ public abstract class BaseCard : MonoBehaviour
 
     #region Public Functions
     public abstract void ActivateSelf(Player activatingPlayer);
-
     public void GenerateDescription()
     {
         cardDescriptionUI.text = string.Format(cardDescription, effectValue);
