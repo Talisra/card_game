@@ -1,17 +1,24 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     #region Properties
+    [HideInInspector]
     public Camera playerCamera; // The camera of the player
     public Transform cameraPoint; // The actual camera transform of the player in the arena
     public GameObject handAnchor; // The position anchor of the hand
     public Castle myCastle;
-    public List<BaseCard> playerHand;
+    //public List<BaseCard> playerHand;
+    private ObservableCollection<BaseCard> playerHand = new ObservableCollection<BaseCard>();
+
     public int availableResources;
 
-    public float spaceBetweenCardsInHand = 0;
+    public BaseCard temp;
+
+    private float spaceBetweenCardsInHand = 0;
     private float cardWidth = 2.5f;
     #endregion
 
@@ -30,6 +37,12 @@ public class Player : MonoBehaviour
         ArrangeCardsGraphic();
     }
     #endregion
+
+    // This function works everytime the hand collection is changed
+    private void OnHandChange(object sender, NotifyCollectionChangedEventArgs e)
+    {
+        ArrangeCardsGraphic();
+    }
 
     private void ArrangeCardsGraphic()
     {
@@ -55,6 +68,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        playerHand.CollectionChanged += OnHandChange;
         // each card that is added to the player's hand must be reseted by
         // reset its local position and rotation and adding it to the handAnchor
         foreach (BaseCard card in playerHand)
@@ -69,7 +83,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
     }
     #endregion
 }
