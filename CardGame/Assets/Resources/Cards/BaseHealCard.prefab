@@ -113,8 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Base Heal
   cardSprite: {fileID: 21300000, guid: 7a460d048ad11cb4c8eca3a7b186b7d3, type: 3}
-  cardDescription: Heal the castle +5 HP
-  cardType: 65
+  cardDescription: Heal the castle +{0} HP
   targetType: 83
   effectValue: 5
   cardImageUI: {fileID: 6705768225521533501}
