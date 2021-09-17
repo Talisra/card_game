@@ -21,8 +21,10 @@ public class CardMgr : MonoBehaviour
         {
             var allGameCardIndex = Random.Range(0, allGameCards.Count);
             var cardToAdd = allGameCards[allGameCardIndex];
-
-            var cardGameObject = Instantiate(cardToAdd);
+            BaseCard cardGameObject = PrefabPooler.Instance.Get(
+                cardToAdd.name, 
+                new Vector3(-100,-100,-100), 
+                Quaternion.identity).GetComponent<BaseCard>();
             cardGameObject.gameObject.SetActive(false);
 
             allGeneratedCards.Add(cardGameObject);
