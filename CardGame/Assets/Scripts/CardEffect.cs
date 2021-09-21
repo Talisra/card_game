@@ -1,11 +1,26 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Collections;
+using UnityEngine;
 
 public abstract class CardEffect : MonoBehaviour
 {
+    #region Properties
+    [SerializeField] protected List<ParticleSystem> effects;
+    #endregion
+
     #region Public Functions
 
     public abstract void ActivateEffect(Player activatingPlayer, TargetType targetType, int value);
 
+    #endregion
+
+    #region Private Functions
+    // shows a particle at a transform target.
+    protected void ShowParticle(ParticleSystem particle, Transform location)
+    {
+        particle.transform.position = location.position;
+        particle.Play();
+    }
     #endregion
 
     #region Unity Functions

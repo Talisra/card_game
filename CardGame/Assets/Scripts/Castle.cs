@@ -7,8 +7,9 @@ public class Castle : MonoBehaviour
     public GameObject CastleBody;
     public GameObject CastleBase;
     private float CastleBodyMaxHeight;
-    public float MaxHP;
-    private float CurrentHP;
+    private float MaxHP;
+    [HideInInspector]
+    public float CurrentHP;
     public BaseCard[] PassiveTriggerSpots { get; set; }
     public Player ControllingPlayer { get; set; }
 
@@ -41,18 +42,12 @@ public class Castle : MonoBehaviour
         Debug.Log("Function 'DestroyCastle(int amount)' Not Implemented!");
     }
 
-    private void Initiate()
+    public void Initiate(float maxHP, float initialHP)
     {
+        MaxHP = maxHP;
         CastleBodyMaxHeight = CastleBody.transform.localScale.y;
-        CurrentHP = MaxHP;
+        CurrentHP = initialHP;
         ScaleWithHP();
-    }
-
-    private void Start()
-    {
-        Initiate();
-
-        //DeveloperFunction();
     }
 
     private void DeveloperFunction()

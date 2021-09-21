@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HealEffect : CardEffect
 {
+    #region Public Functions
     public override void ActivateEffect(Player activatingPlayer, TargetType targetType, int value)
     {
         switch (targetType)
@@ -11,8 +12,10 @@ public class HealEffect : CardEffect
             case TargetType.Self:
                 {
                     activatingPlayer.myCastle.BuildCastle(value);
+                    ShowParticle(effects[0], activatingPlayer.myCastle.transform);
                     break;
                 }
         }
     }
+    #endregion
 }

@@ -8,9 +8,10 @@ public class Player : MonoBehaviour
 {
     #region Properties
     [HideInInspector]
-    public Camera playerCamera; // The camera of the player
-    public Transform cameraPoint; // The actual camera transform of the player in the arena
-    public GameObject handAnchor; // The position anchor of the hand
+    private Camera playerCamera; // The camera of the player
+    private Transform cameraPoint; // The actual camera transform of the player in the arena
+    private GameObject handAnchor; // The position anchor of the hand
+    [HideInInspector] 
     public Castle myCastle;
     private ObservableCollection<BaseCard> playerHand = new ObservableCollection<BaseCard>();
 
@@ -21,6 +22,15 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Public Functions
+    public void SetPlayerSpace(PlayerSpace playerSpace)
+    {
+        cameraPoint = playerSpace.cameraTransform;
+        playerCamera.transform.position = cameraPoint.position;
+        playerCamera.transform.LookAt(Vector3.zero); // look at the center of the arena
+        handAnchor = playerSpace.handTransform.gameObject;
+        myCastle = playerSpace.castle;
+    }
+
     public void UseCard()
     {
         Debug.Log("UseCardFromHand is not implemented yet!");
@@ -67,8 +77,6 @@ public class Player : MonoBehaviour
     void Awake()
     {
         playerCamera = Camera.main;
-        playerCamera.transform.position = cameraPoint.position;
-        Camera.main.transform.LookAt(Vector3.zero); // look at the center of the arena
     }
 
     private void Start()

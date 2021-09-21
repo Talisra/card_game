@@ -47,11 +47,6 @@ public class CardMgr : MonoBehaviour
         LoadCards();
     }
 
-    void Start()
-    {
-        CreateDeck();
-    }
-
     #endregion
 
     #region Private Functions

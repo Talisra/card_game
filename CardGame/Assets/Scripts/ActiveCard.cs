@@ -15,6 +15,10 @@
     #endregion
 
     #region Unity Functions
+    private void OnMouseDown()
+    {
+        ActivateSelf(FindObjectOfType<Player>());
+    }
 
     // Update is called once per frame
     void Update()
